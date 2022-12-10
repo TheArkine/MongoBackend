@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div class="table-responsive">
+        <table class="table caption-top table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">DateIn</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var @item in ViewBag.UserList)
+                {
+                    <tr>
+                        <td>@item._id</td>
+                        <td>@item.name</td>
+                        <td>@item.email</td>
+                        <td>@item.phone</td>
+                        <td>@item.address</td>
+                        <td>@item.dateIn</td>
+
+                        <td class="actions ">
+                            <button class="btn btn-warning btn-sm"
+                                onclick="window.location='@Url.Action("Edit", "Home", new {idUser=@item._id})'">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm"
+                                onclick="window.location= '@Url.Action("deleteUser", "Home", new {idUser=@item._id})'">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button class="btn btn-primary btn-sm"
+                onclick="window.location= '@Url.Action("Add", "Home")'">
+            Agregar Usuario
+        </button>
+    </div>
+</div>
+
